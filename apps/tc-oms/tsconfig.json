@@ -5,7 +5,10 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@admin/*": ["../admin/app/*"]
+    }
   },
   "include": [
     "**/*.ts",

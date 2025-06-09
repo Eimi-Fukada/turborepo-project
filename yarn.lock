@@ -1298,6 +1298,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@repo/admin@workspace:*, @repo/admin@workspace:apps/admin":
+  version: 0.0.0-use.local
+  resolution: "@repo/admin@workspace:apps/admin"
+  dependencies:
+    "@repo/eslint-config": "npm:*"
+    "@repo/prettier-config": "npm:*"
+    "@repo/typescript-config": "npm:*"
+    "@repo/ui": "npm:*"
+    "@types/node": "npm:^22.15.3"
+    "@types/react": "npm:19.1.0"
+    "@types/react-dom": "npm:19.1.1"
+    eslint: "npm:^9.28.0"
+    next: "npm:^15.3.0"
+    react: "npm:^19.1.0"
+    react-dom: "npm:^19.1.0"
+    typescript: "npm:5.8.2"
+  languageName: unknown
+  linkType: soft
+
 "@repo/eslint-config@npm:*, @repo/eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
   resolution: "@repo/eslint-config@workspace:packages/eslint-config"
@@ -1732,25 +1751,6 @@ __metadata:
   checksum: 10c0/79e490bebebbc1dbded6d86240d1532cd319a4cdd2b7682e46411bd6224bb2d3ea41661eeccebbc53a004005dac8edaaf5c56c7981d3697ec8c5c83008f2b6e7
   languageName: node
   linkType: hard
-
-"admin@workspace:apps/admin":
-  version: 0.0.0-use.local
-  resolution: "admin@workspace:apps/admin"
-  dependencies:
-    "@repo/eslint-config": "npm:*"
-    "@repo/prettier-config": "npm:*"
-    "@repo/typescript-config": "npm:*"
-    "@repo/ui": "npm:*"
-    "@types/node": "npm:^22.15.3"
-    "@types/react": "npm:19.1.0"
-    "@types/react-dom": "npm:19.1.1"
-    eslint: "npm:^9.28.0"
-    next: "npm:^15.3.0"
-    react: "npm:^19.1.0"
-    react-dom: "npm:^19.1.0"
-    typescript: "npm:5.8.2"
-  languageName: unknown
-  linkType: soft
 
 "agent-base@npm:^7.1.0, agent-base@npm:^7.1.2":
   version: 7.1.3
@@ -6635,6 +6635,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tc-oms@workspace:apps/tc-oms"
   dependencies:
+    "@repo/admin": "workspace:*"
     "@repo/eslint-config": "npm:*"
     "@repo/prettier-config": "npm:*"
     "@repo/typescript-config": "npm:*"

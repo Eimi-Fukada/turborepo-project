@@ -117,3 +117,7 @@ admin/
   ├── tailwind.config.ts # Tailwind 配置
   └── postcss.config.js  # PostCSS 配置
 ```
+
+
+@是路劲别名，具体查看tsconfig
+使用zustand状态管理，具体查看stores，增加两个中间件 ，一个是devtools支持redux devtools调试器，一个是persist持久化数据到localstorage

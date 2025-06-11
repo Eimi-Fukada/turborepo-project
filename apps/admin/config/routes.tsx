@@ -13,6 +13,11 @@ export const routes: MenuDataItem[] = [
     icon: <HomeOutlined />,
   },
   {
+    path: "/userInfo",
+    name: "我的",
+    icon: <HomeOutlined />,
+  },
+  {
     path: "/system",
     name: "系统管理",
     icon: <DatabaseOutlined />,

@@ -8,6 +8,7 @@ interface UserInfo {
   email?: string;
   roles?: string[];
   permissions?: string[];
+  menus?: string[]; // 添加菜单权限字段
 }
 
 interface UserState {
@@ -20,6 +21,7 @@ interface UserState {
   // 用户权限相关方法
   hasPermission: (permission: string) => boolean;
   hasRole: (role: string) => boolean;
+  hasMenuPermission: (path: string) => boolean; // 添加菜单权限检查方法
 }
 
 export const useUserStore = create<UserState>()(
@@ -45,6 +47,14 @@ export const useUserStore = create<UserState>()(
           const { userInfo } = get();
           if (!userInfo?.roles) return false;
           return userInfo.roles.includes(role);
+        },
+
+        hasMenuPermission: (path: string) => {
+          const { userInfo } = get();
+          if (!userInfo?.menus) return false;
+          return userInfo.menus.some(
+            (menu) => path === menu || path.startsWith(`${menu}/`)
+          );
         },
       }),
       {

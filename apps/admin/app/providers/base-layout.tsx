@@ -6,6 +6,7 @@ import { routes } from "@/config/routes";
 import { useUserStore } from "@/stores/useUserStore";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { filterRoutesByPermissions } from "@/utils/route-utils";
 
 export default function BaseLayout({
   children,
@@ -31,10 +32,15 @@ export default function BaseLayout({
     return null;
   }
 
+  // 根据用户权限过滤路由
+  const filteredRoutes = userInfo?.menus
+    ? filterRoutesByPermissions(routes, userInfo.menus)
+    : routes;
+
   return (
     <ProLayout
       layout="mix"
-      menuDataRender={() => routes}
+      menuDataRender={() => filteredRoutes}
       location={{ pathname }}
       collapsed={false}
       logo="/bg-logo.webp"

@@ -23,13 +23,24 @@ export default function LoginPage() {
           const { username } = values;
           try {
             // 模拟登录
+            const userMenus = ["/", "/system", "/system/users"]; // 模拟后端返回的菜单权限
             setUserInfo({
               id: "1",
               username,
               avatar:
                 "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
+              roles: ["admin"],
+              permissions: ["read", "write"],
+              menus: userMenus,
             });
+
             setToken("mock-token");
+            // 在 cookie 中存储 token 和菜单权限
+            document.cookie = `token=mock-token; path=/`;
+            document.cookie = `menu_permissions=${encodeURIComponent(
+              JSON.stringify(userMenus)
+            )}; path=/`;
+
             message.success("登录成功");
             router.push("/");
           } catch (error) {

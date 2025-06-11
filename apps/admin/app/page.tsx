@@ -11,6 +11,7 @@ import { WaterMark } from "@ant-design/pro-components";
 export default function Home() {
   return (
     <div className={styles.page}>
+      <div className="text-3xl font-bold underline">123123</div>
       <WaterMark content="蚂蚁集团">
         <div style={{ height: 500, width: 500 }} />
       </WaterMark>

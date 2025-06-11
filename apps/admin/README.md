@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+# Admin 项目
 
-## Getting Started
+这是一个基于 Next.js 的管理后台基础框架。
 
-First, run the development server:
+## Tailwind CSS 配置说明
+
+### 1. 安装依赖
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn add tailwindcss @tailwindcss/postcss postcss
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 必需的配置文件
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### tailwind.config.ts
+```typescript
+import type { Config } from "tailwindcss";
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
+const config: Config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "../../packages/ui/**/*.{js,ts,jsx,tsx,mdx}", // 共享 UI 组件
+  ],
+  theme: {
+    extend: {
+      // 在这里扩展或覆盖默认主题
+    },
+  },
+  plugins: [],
+};
 
-## Learn More
+export default config;
+```
 
-To learn more about Next.js, take a look at the following resources:
+#### postcss.config.js
+```javascript
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+export default config;
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. 样式引入
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+在 `app/globals.css` 文件中添加以下内容：
 
-## Deploy on Vercel
+```css
+@import "tailwindcss";
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+/* 其他全局样式 */
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 4. 使用示例
+
+```tsx
+// 页面布局示例
+export default function DemoPage() {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* 顶部导航栏 */}
+      <nav className="bg-white shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <h1 className="text-xl font-bold text-gray-800">Admin Dashboard</h1>
+        </div>
+      </nav>
+      
+      {/* 内容区域 */}
+      <main className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* 卡片组件 */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-lg font-semibold mb-4">数据统计</h2>
+            <p className="text-gray-600">使用 Tailwind 的工具类快速构建界面</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+```
+
+### 常用工具类说明
+
+- 布局类：
+  - `flex`, `grid` - 弹性布局和网格布局
+  - `p-{size}` - 内边距
+  - `m-{size}` - 外边距
+  - `w-{size}`, `h-{size}` - 宽度和高度
+
+- 样式类：
+  - `bg-{color}` - 背景颜色
+  - `text-{color}` - 文字颜色
+  - `font-{weight}` - 字体粗细
+  - `rounded-{size}` - 圆角
+  - `shadow-{size}` - 阴影
+
+- 响应式类：
+  - `sm:` - 640px 以上
+  - `md:` - 768px 以上
+  - `lg:` - 1024px 以上
+  - `xl:` - 1280px 以上
+
+
+## 项目结构
+
+```
+admin/
+  ├── app/                # App Router 目录
+  │   ├── globals.css    # 全局样式
+  │   └── layout.tsx     # 根布局
+  ├── src/
+  │   ├── components/    # 组件目录
+  │   └── stores/       # 状态管理目录
+  ├── tailwind.config.ts # Tailwind 配置
+  └── postcss.config.js  # PostCSS 配置
+```

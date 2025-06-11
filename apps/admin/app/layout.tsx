@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { RootProvider } from "./providers/root-provider";
+import BaseLayout from "./providers/base-layout";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "../public/fonts/GeistVF.woff",
   variable: "--font-geist-sans",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../public/fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
 });
 
@@ -28,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <RootProvider>{children}</RootProvider>
+        <RootProvider>
+          <BaseLayout>{children}</BaseLayout>
+        </RootProvider>
       </body>
     </html>
   );

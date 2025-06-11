@@ -11,6 +11,16 @@ const nextConfig = {
     return config;
   },
   */
+  experimental: {
+    fontLoaders: [
+      {
+        loader: "@next/font/local",
+        options: {
+          customFontDir: "./public/fonts", // 自定义字体目录
+        },
+      },
+    ],
+  },
 };
 
 export default nextConfig;

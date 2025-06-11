@@ -23,14 +23,23 @@ export default function LoginPage() {
           const { username } = values;
           try {
             // 模拟登录
-            const userMenus = ["/", "/system", "/system/users"]; // 模拟后端返回的菜单权限
+            const userMenus = ["/", "/system", "/system/users"]; // 菜单权限
+            const buttonPermissions = [
+              "system:user:add",
+              "system:user:edit",
+              "system:user:delete",
+              "system:user:view",
+              "system:role:add",
+              "system:role:edit",
+            ]; // 按钮权限码
+
             setUserInfo({
               id: "1",
               username,
               avatar:
                 "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
               roles: ["admin"],
-              permissions: ["read", "write"],
+              permissions: buttonPermissions,
               menus: userMenus,
             });
 

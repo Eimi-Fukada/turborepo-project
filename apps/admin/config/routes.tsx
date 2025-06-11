@@ -11,6 +11,12 @@ export const routes: MenuDataItem[] = [
     path: "/",
     name: "首页",
     icon: <HomeOutlined />,
+    btnPermissions: [
+      {
+        name: "新增",
+        code: "/:add",
+      },
+    ],
   },
   {
     path: "/userInfo",

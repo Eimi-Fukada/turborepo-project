@@ -5,6 +5,9 @@ import { LoginFormPage, ProFormText } from "@ant-design/pro-components";
 import { useUserStore } from "@/stores/useUserStore";
 import { message } from "antd";
 import { useRouter } from "next/navigation";
+import LoginBg from "./login-bg";
+import Image from "next/image";
+import Bg from "../../public/bg.jpg";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -12,80 +15,90 @@ export default function LoginPage() {
   const setToken = useUserStore((state) => state.setToken);
 
   return (
-    <div style={{ height: "100vh", backgroundColor: "#f5f5f5" }}>
-      <LoginFormPage
-        backgroundImageUrl="/login-bg.jpg"
-        logo="/logo.png"
-        title="苏康养"
-        subTitle="您的生活管家平台"
-        onFinish={async (values) => {
-          // 这里添加实际的登录逻辑
-          const { username } = values;
-          try {
-            // 模拟登录
-            const userMenus = ["/", "/system", "/system/users"]; // 菜单权限
-            const buttonPermissions = [
-              "system:user:add",
-              "system:user:edit",
-              "system:user:delete",
-              "system:user:view",
-              "system:role:add",
-              "system:role:edit",
-            ]; // 按钮权限码
+    <div style={{ height: "100vh" }}>
+      <Image
+        src={Bg}
+        alt="Logo"
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      />
+      <div className="absolute top-10 left-0">
+        <LoginBg />
+      </div>
+      <div className="absolute w-full h-full">
+        <LoginFormPage
+          backgroundImageUrl="/login-bg.jpg"
+          logo="/logo.png"
+          title="苏康养"
+          subTitle="您的生活管家平台"
+          onFinish={async (values) => {
+            // 这里添加实际的登录逻辑
+            const { username } = values;
+            try {
+              // 模拟登录
+              const userMenus = ["/", "/system", "/system/users"]; // 菜单权限
+              const buttonPermissions = [
+                "system:user:add",
+                "system:user:edit",
+                "system:user:delete",
+                "system:user:view",
+                "system:role:add",
+                "system:role:edit",
+              ]; // 按钮权限码
 
-            setUserInfo({
-              id: "1",
-              username,
-              avatar:
-                "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
-              roles: ["admin"],
-              permissions: buttonPermissions,
-              menus: userMenus,
-            });
+              setUserInfo({
+                id: "1",
+                username,
+                avatar:
+                  "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
+                roles: ["admin"],
+                permissions: buttonPermissions,
+                menus: userMenus,
+              });
 
-            setToken("mock-token");
-            // 在 cookie 中存储 token 和菜单权限
-            document.cookie = `token=mock-token; path=/`;
-            document.cookie = `menu_permissions=${encodeURIComponent(
-              JSON.stringify(userMenus)
-            )}; path=/`;
+              setToken("mock-token");
+              // 在 cookie 中存储 token 和菜单权限
+              document.cookie = `token=mock-token; path=/`;
+              document.cookie = `menu_permissions=${encodeURIComponent(
+                JSON.stringify(userMenus)
+              )}; path=/`;
 
-            message.success("登录成功");
-            router.push("/");
-          } catch (error) {
-            message.error(`登录失败${error}`);
-          }
-        }}
-      >
-        <ProFormText
-          name="username"
-          fieldProps={{
-            size: "large",
-            prefix: <UserOutlined />,
+              message.success("登录成功");
+              router.push("/");
+            } catch (error) {
+              message.error(`登录失败${error}`);
+            }
           }}
-          placeholder="用户名: admin"
-          rules={[
-            {
-              required: true,
-              message: "请输入用户名!",
-            },
-          ]}
-        />
-        <ProFormText.Password
-          name="password"
-          fieldProps={{
-            size: "large",
-            prefix: <LockOutlined />,
-          }}
-          placeholder="密码: ant.design"
-          rules={[
-            {
-              required: true,
-              message: "请输入密码！",
-            },
-          ]}
-        />
-      </LoginFormPage>
+        >
+          <ProFormText
+            name="username"
+            fieldProps={{
+              size: "large",
+              prefix: <UserOutlined />,
+            }}
+            placeholder="用户名: admin"
+            rules={[
+              {
+                required: true,
+                message: "请输入用户名!",
+              },
+            ]}
+          />
+          <ProFormText.Password
+            name="password"
+            fieldProps={{
+              size: "large",
+              prefix: <LockOutlined />,
+            }}
+            placeholder="密码: ant.design"
+            rules={[
+              {
+                required: true,
+                message: "请输入密码！",
+              },
+            ]}
+          />
+        </LoginFormPage>
+      </div>
     </div>
   );
 }

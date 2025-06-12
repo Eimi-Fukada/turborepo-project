@@ -41,7 +41,7 @@ export default function LoginBg() {
   });
 
   return (
-    <div style={{ height: "400px", width: "500px" }}>
+    <div style={{ height: "500px", width: "500px" }}>
       <Canvas
         shadows
         orthographic
@@ -52,8 +52,8 @@ export default function LoginBg() {
           <Text rotation={[0, 1, 0]} position={[0, 0, 0]} config={config} />
         </Suspense>
         <OrbitControls
-          // autoRotate
-          // autoRotateSpeed={-0.1}
+          autoRotate
+          autoRotateSpeed={-0.1}
           zoomSpeed={0.25}
           minZoom={40}
           maxZoom={140}

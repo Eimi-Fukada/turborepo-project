@@ -122,3 +122,6 @@ admin/
 @是路劲别名，具体查看tsconfig
 使用zustand状态管理，具体查看stores，增加两个中间件 ，一个是devtools支持redux devtools调试器，一个是persist持久化数据到localstorage
 字体引用要先改next.config.js，然后使用相对于app目录的路劲
+开发环境：运行 npm run dev。
+UAT 环境：运行 npm run dev:uat。
+生产环境：运行 npm run build 构建项目，然后运行 npm run start 启动生产服务器。

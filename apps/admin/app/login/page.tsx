@@ -48,8 +48,6 @@ export default function LoginPage() {
               setUserInfo({
                 id: "1",
                 username,
-                avatar:
-                  "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
                 roles: ["admin"],
                 permissions: buttonPermissions,
                 menus: userMenus,

@@ -1,20 +1,44 @@
 "use client";
-// import { type ImageProps } from "next/image";
-import styles from "./page.module.css";
-import { WaterMark } from "@ant-design/pro-components";
-
-// type Props = Omit<ImageProps, "src"> & {
-//   srcLight: string;
-//   srcDark: string;
-// };
+import { ProColumns } from "@ant-design/pro-components";
+import GenericTable from "@repo/admin-framework/generic-table/index";
 
 export default function Home() {
+  const columns: ProColumns[] = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Age",
+      dataIndex: "age",
+      key: "age",
+      formItemProps: {
+        rules: [{ required: true, message: "Please input your age!" }],
+      },
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+    },
+  ];
+
   return (
-    <div className={styles.page}>
-      <div className="text-3xl font-bold underline">123123</div>
-      <WaterMark content="蚂蚁集团">
-        <div style={{ height: 500, width: 500 }} />
-      </WaterMark>
-    </div>
+    <>
+      <GenericTable
+        columns={columns}
+        url="/api/users"
+        onAdd={async (record) => {
+          console.log("add", record);
+        }}
+        onEdit={async (record) => {
+          console.log("edit", record);
+        }}
+        onDelete={async (id) => {
+          console.log("delete", id);
+        }}
+      />
+    </>
   );
 }

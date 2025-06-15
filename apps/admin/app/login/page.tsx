@@ -5,7 +5,7 @@ import { LoginFormPage, ProFormText } from "@ant-design/pro-components";
 import { useUserStore } from "@/stores/useUserStore";
 import { message } from "antd";
 import { useRouter } from "next/navigation";
-import LoginBg from "./login-bg";
+import LoginWater from "./login-water";
 import Image from "next/image";
 import Bg from "../../public/bg.jpg";
 
@@ -21,8 +21,8 @@ export default function LoginPage() {
         alt="Logo"
         className="absolute top-0 left-0 w-full h-full object-cover"
       />
-      <div className="absolute top-10 left-0">
-        <LoginBg />
+      <div className="absolute top-0 left-0  w-full h-full">
+        <LoginWater />
       </div>
       <div className="absolute w-full h-full">
         <LoginFormPage

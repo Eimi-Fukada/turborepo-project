@@ -9,7 +9,7 @@ node_modules
 # Testing
 coverage
 
-.yarn
+.yarn/
 .turbo
 # Vercel
 .vercel

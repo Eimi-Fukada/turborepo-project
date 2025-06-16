@@ -4,7 +4,7 @@
 
 import React, { useMemo, Suspense } from "react";
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
-import { Cloud, Environment, OrbitControls, Sky } from "@react-three/drei";
+import { Cloud, OrbitControls, Sky } from "@react-three/drei";
 import {
   TextureLoader,
   RepeatWrapping,

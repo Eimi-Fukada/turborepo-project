@@ -173,7 +173,7 @@ const GenericTable: React.FC<GenericTableProps> = ({
         open={modalVisible}
         onOpenChange={setModalVisible}
         modalProps={{
-          destroyOnClose: true,
+          destroyOnHidden: true,
         }}
         onFinish={async (values) => handleFinish(values)}
         form={form}

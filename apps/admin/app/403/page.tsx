@@ -1,1 +1,4 @@
-export { default } from "@repo/admin-framework/403";
+import ForbiddenPage from "@repo/admin-framework/403";
+export default function Custom403() {
+  return <ForbiddenPage />;
+}

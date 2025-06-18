@@ -2,10 +2,10 @@
 
 import "@ant-design/v5-patch-for-react-19";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { ConfigProvider, theme } from "antd";
+import { ConfigProvider, theme, App } from "antd";
 import { ReactNode } from "react";
 
-export function RootProvider({ children }: { children: ReactNode }) {
+export default function RootProvider({ children }: { children: ReactNode }) {
   return (
     <AntdRegistry>
       <ConfigProvider
@@ -16,7 +16,7 @@ export function RootProvider({ children }: { children: ReactNode }) {
           locale: "zh_CN",
         }}
       >
-        {children}
+        <App>{children}</App>
       </ConfigProvider>
     </AntdRegistry>
   );

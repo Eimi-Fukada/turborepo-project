@@ -3,9 +3,8 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { LoginFormPage, ProFormText } from "@ant-design/pro-components";
 import { useUserStore } from "@/stores/useUserStore";
-import { message } from "antd";
+import { App } from "antd";
 import { useRouter } from "next/navigation";
-import LoginWater from "./login-water";
 import Image from "next/image";
 import Bg from "../../public/bg.jpg";
 
@@ -13,6 +12,7 @@ export default function LoginPage() {
   const router = useRouter();
   const setUserInfo = useUserStore((state) => state.setUserInfo);
   const setToken = useUserStore((state) => state.setToken);
+  const { message } = App.useApp();
 
   return (
     <div style={{ height: "100vh" }}>
@@ -21,12 +21,8 @@ export default function LoginPage() {
         alt="Logo"
         className="absolute top-0 left-0 w-full h-full object-cover"
       />
-      <div className="absolute top-0 left-0  w-full h-full">
-        <LoginWater />
-      </div>
       <div className="absolute w-full h-full">
         <LoginFormPage
-          backgroundImageUrl="/login-bg.jpg"
           logo="/logo.png"
           title="苏康养"
           subTitle="您的生活管家平台"
@@ -35,7 +31,7 @@ export default function LoginPage() {
             const { username } = values;
             try {
               // 模拟登录
-              const userMenus = ["/", "/system", "/system/users"]; // 菜单权限
+              const userMenus = ["/", "/dashboard", "/system", "/system/users"]; // 菜单权限
               const buttonPermissions = [
                 "system:user:add",
                 "system:user:edit",
@@ -63,6 +59,7 @@ export default function LoginPage() {
               message.success("登录成功");
               router.push("/");
             } catch (error) {
+              console.error("登录失败:", error);
               message.error(`登录失败${error}`);
             }
           }}

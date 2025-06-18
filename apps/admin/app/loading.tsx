@@ -1,3 +1,1 @@
-export default function Loading() {
-  return <div className="loading" />;
-}
+export { default } from "@repo/admin-framework/loading/index";

@@ -1,0 +1,50 @@
+{
+  "name": "oms-backend",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack --port 3001",
+    "prod": "NEXT_PUBLIC_APP_ENV=production next dev --turbopack --port 3001",
+    "build:dev": "NEXT_PUBLIC_APP_ENV=development next build",
+    "build": "next build",
+    "start:dev": "NEXT_PUBLIC_APP_ENV=development next start",
+    "start": "next start",
+    "lint": "next lint --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@baidu/call-rtcsdk": "./public/baidu-call-rtcsdk-3.2.2.tgz",
+    "@react-three/drei": "^10.2.0",
+    "@react-three/fiber": "^9.1.2",
+    "@react-three/postprocessing": "^3.0.4",
+    "@repo/admin-framework": "workspace:*",
+    "@repo/ui": "*",
+    "@tailwindcss/postcss": "^4.1.8",
+    "crypto-js": "^4.2.0",
+    "echarts": "^5.6.0",
+    "leva": "^0.10.0",
+    "next": "^15.3.0",
+    "pdfjs-dist": "^5.3.31",
+    "postcss": "^8.5.4",
+    "rc-slider-captcha": "^1.7.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.8",
+    "three": "^0.177.0",
+    "three-stdlib": "^2.36.0",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/prettier-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/crypto-js": "^4",
+    "@types/node": "^22.15.3",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.1",
+    "@types/three": "^0.177.0",
+    "eslint": "^9.28.0",
+    "typescript": "5.8.2"
+  }
+}

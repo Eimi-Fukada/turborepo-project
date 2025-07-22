@@ -1,3 +1,17 @@
+const appEnv = process.env.NEXT_PUBLIC_APP_ENV || "development";
+
+const envMap = {
+  development: {
+    NEXT_PUBLIC_API_URL: "http://dev/api",
+  },
+  uat: {
+    NEXT_PUBLIC_API_URL: "https://api.uat.com",
+  },
+  production: {
+    NEXT_PUBLIC_API_URL: "https://api.prod.com",
+  },
+};
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -13,7 +27,12 @@ const nextConfig = {
     return config;
   },
   */
+  env: {
+    NEXT_PUBLIC_APP_ENV: appEnv,
+    NEXT_PUBLIC_API_URL: envMap[appEnv].NEXT_PUBLIC_API_URL,
+  },
   transpilePackages: ["three"],
+  output: "standalone",
 };
 
 export default nextConfig;

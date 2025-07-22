@@ -1,0 +1,45 @@
+.page {
+  width: 84px;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+  cursor: pointer;
+  position: relative;
+}
+.line {
+  width: 2px;
+  height: 56px;
+  background: #0d6efd;
+  position: absolute;
+  left: -12px;
+  top: 0;
+}
+.icon_content {
+  width: 56px;
+  height: 56px;
+  background: #e9ebef;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item_text {
+  font-family:
+    Source Han Sans CN,
+    Source Han Sans CN;
+  font-weight: 400;
+  font-size: 12px;
+  color: #757880;
+  margin-top: 3px;
+}

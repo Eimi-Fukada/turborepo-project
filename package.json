@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:dev": "turbo run build:dev",
     "dev": "turbo run dev",
+    "prod": "turbo run prod",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
@@ -32,8 +34,11 @@
     "@ant-design/pro-components": "^2.8.7",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@tanstack/react-query": "^5.80.7",
+    "animate.css": "^4.1.1",
     "antd": "^5.25.4",
     "axios": "^1.10.0",
-    "conventional-changelog-cli": "^5.0.0"
+    "conventional-changelog-cli": "^5.0.0",
+    "react-cropper": "^2.3.3",
+    "react-infinite-scroll-component": "^6.1.0"
   }
 }

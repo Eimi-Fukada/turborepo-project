@@ -1,0 +1,131 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.line {
+  width: 4px;
+  height: 20px;
+  background: #0d6efd;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+.text {
+  font-family:
+    Source Han Sans CN,
+    Source Han Sans CN;
+  font-weight: bold;
+  font-size: 16px;
+  color: #525459;
+}
+.edit_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  background: #f8f9fa;
+  border-radius: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.edit_icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+.edit_text {
+  font-family:
+    Source Han Sans CN,
+    Source Han Sans CN;
+  font-weight: 400;
+  font-size: 12px;
+  color: #0d6efd;
+}
+.btn_content {
+  padding: 4px 12px;
+  background: #f8f9fa;
+  border-radius: 20px;
+  margin-left: 4px;
+  font-family:
+    Source Han Sans CN,
+    Source Han Sans CN;
+  font-weight: 500;
+  font-size: 12px;
+  color: #0d6efd;
+  cursor: pointer;
+}
+.down_icon {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+.rotate {
+  transform: rotate(-180deg);
+}
+.content {
+  transition: transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+.content_scale {
+  max-height: 0;
+  transform: scale(0);
+}
+.table_header {
+  background: #f8f9fa;
+  height: 54px;
+}
+.add_content {
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+  border: 1px dashed #ced4da;
+  font-family:
+    Source Han Sans CN,
+    Source Han Sans CN;
+  font-weight: 400;
+  font-size: 14px;
+  color: #343840;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.add_icon {
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+}
+.card_item {
+  margin-bottom: 12px;
+  background: rgba(13, 110, 253, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.card_item_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+  background: rgba(13, 110, 253, 0.1);
+  padding: 0 10px;
+}
+.text {
+  font-family:
+    Source Han Sans CN,
+    Source Han Sans CN;
+  font-weight: 500;
+  font-size: 14px;
+  color: #000000;
+}
+.del_icon {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}

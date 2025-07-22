@@ -280,3 +280,17 @@ docker run --rm -d \
     npx serve out
     ```
 
+
+#### Docker镜像问题
+* 如果拉取不到官方镜像，可以找个Docker镜像源，然后拉取下来
+* 在本地运行 docker images 查看镜像
+* 运行 docker save gracelife/grace055 > grace055.tar 打成一个tar包
+* 上传到服务器某一个路劲下
+* 运行 docker load -i gracelife/grace055.tar 加载镜像
+* 就可以运行 docker run --rm -d \
+  --name oms-backend-app \
+  -p 3000:3000 \
+  -v "$(pwd)/standalone":/standalone \
+  gracelife/grace055 \
+  sh -c "cd /standalone/apps/oms-backend && node server.js"
+

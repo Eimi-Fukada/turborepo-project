@@ -294,3 +294,6 @@ docker run --rm -d \
   gracelife/grace055 \
   sh -c "cd /standalone/apps/oms-backend && node server.js"
 
+  ### 修改Linux文件夹权限
+  sudo chown -R wangsheng:developers oms_web
+

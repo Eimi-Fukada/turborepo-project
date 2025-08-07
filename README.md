@@ -297,3 +297,139 @@ docker run --rm -d \
   ### 修改Linux文件夹权限
   sudo chown -R wangsheng:developers oms_web
 
+
+### Jenkins 配置示例
+* 执行shell 
+```
+yarn install --registry https://registry.npmmirror.com/
+yarn build:dev --filter=$projectName
+cd apps/$projectName
+mv .next/static .next/standalone/apps/oms-backend/.next/
+mv public .next/standalone/apps/oms-backend/
+tar -zcf deploy.tar.gz .next
+```
+* Exec command
+```
+cd /home/wuxiang/oms_web/
+scp -P 56354 deploy.tar.gz wangsheng@172.16.202.2:/home/wuxiang/oms_web
+
+ssh -p 56354 wangsheng@172.16.202.2 "
+  cd /home/wuxiang/oms_web &&
+  rm -rf .next &&
+  tar -xzf deploy.tar.gz &&
+rm -f deploy.tar.gz &&
+cd .next/ &&
+docker rm -f oms-backend-app || true &&
+docker run --rm -d \
+  --name oms-backend-app \
+  -p 3000:3000 \
+  -v "$(pwd)/standalone":/standalone \
+  node-22.9 \
+  sh -c "cd /standalone/apps/oms-backend && node server.js"
+```
+
+* 解释代码：
+```
+1️⃣ docker rm -f oms-backend-app || true
+作用：
+强制删除一个叫 oms-backend-app 的容器（如果它存在）
+-f：强制删除，即使容器正在运行
+|| true：即使没有这个容器（删除失败），也不报错，继续执行后面的命令
+🎯 目的：确保不会因为“容器已存在”而报错。
+
+2️⃣ docker run
+这是 Docker 的核心命令，用来创建并启动一个新容器。
+
+3️⃣ --rm
+作用：
+当容器停止运行时，自动删除容器
+避免产生“僵尸容器”占用空间
+📌 注意：--rm 和你前面的 docker rm -f 看似重复，其实是配合使用的：
+
+docker rm -f：删除旧的容器
+--rm：让新的容器在停止时自动删除
+4️⃣ -d
+作用：
+后台运行容器（detached 模式）
+容器启动后，不占用终端，可以继续执行其他命令
+5️⃣ --name oms-backend-app
+作用：
+给这个容器起个名字：oms-backend-app
+后续可以用这个名字管理容器，比如：
+bash
+深色版本
+docker stop oms-backend-app
+docker restart oms-backend-app
+docker logs oms-backend-app
+6️⃣ -p 3000:3000
+作用：
+端口映射（Port Mapping）
+把宿主机（服务器）的 3000 端口，映射到容器内的 3000 端口
+📌 解释：
+
+你的 Node.js 服务在容器里监听 3000 端口
+外部用户通过 http://服务器IP:3000 访问
+Docker 把请求从宿主机的 3000 转发到容器的 3000
+🔥 7️⃣ -v "$(pwd)/standalone":/standalone ← 这就是“挂载”！
+这是整个命令中最关键的部分 —— 挂载（Volume Mount）
+拆解：
+bash
+深色版本
+-v "宿主机路径:容器内路径"
+具体是：
+
+宿主机路径："$(pwd)/standalone"
+$(pwd)：当前目录（比如 /home/wuxiang/oms_web/.next）
+所以完整路径是：/home/wuxiang/oms_web/.next/standalone
+容器内路径：/standalone
+容器内部的一个目录
+✅ 挂载的作用：
+把宿主机上的 ./standalone 文件夹，“映射”到容器内的 /standalone 文件夹
+
+📌 效果：
+
+容器内读写 /standalone，实际上是在操作宿主机的 ./standalone
+宿主机上更新了 ./standalone 里的文件，容器内立刻就能看到！
+🎯 这就是你实现“代码更新”的关键！
+
+8️⃣ node-22.9
+作用：
+指定使用哪个 镜像（Image） 来创建容器
+这个镜像是你自定义的 Node.js 22.9 环境
+📌 镜像可以理解为“软件安装包”，容器是“运行中的实例”
+
+9️⃣ sh -c "cd /standalone/apps/oms-backend && node server.js"
+作用：
+容器启动后，要运行的命令
+sh -c：用 shell 执行后面的命令
+具体执行：
+cd /standalone/apps/oms-backend
+→ 进入挂载目录下的项目文件夹
+node server.js
+→ 启动 Node.js 服务
+📌 因为 /standalone 是挂载的，所以 server.js 是你从外面传进来的代码！
+```
+
+* 可优化点：
+上面的逻辑都是停止并删除容器，然后重新启动，这样每次部署都需要停掉容器，然后重新启动，效率不高。
+可以执行以下命令：
+```
+ssh -p 56354 wangsheng@172.16.202.2 "
+  cd /home/wuxiang/oms_web &&
+  tar -xzf deploy.tar.gz &&
+  if docker ps -a --format '{{.Names}}' | grep -q '^oms-backend-app\$'; then
+    echo '🔄 容器已存在，正在重启...'
+    docker restart oms-backend-app
+  else
+    echo '🆕 容器不存在，正在创建...'
+    docker run --rm -d \
+      --name oms-backend-app \
+      -p 3000:3000 \
+      -v /home/wuxiang/oms_web/standalone:/standalone \
+      node-22.9 \
+      sh -c 'cd /standalone/apps/oms-backend && node server.js'
+  fi
+"
+```
+
+

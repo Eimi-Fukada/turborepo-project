@@ -24,43 +24,51 @@ export default function LoginPage() {
       <div className="absolute w-full h-full">
         <LoginFormPage
           logo="/logo.png"
-          title="苏康养"
-          subTitle="您的生活管家平台"
+          title="Turborepo"
+          subTitle="Turborepo 管理的项目集"
           onFinish={async (values) => {
-            // 这里添加实际的登录逻辑
-            const { username } = values;
+            const { username, password } = values;
             try {
-              // 模拟登录
-              const userMenus = ["/", "/dashboard", "/system", "/system/users"]; // 菜单权限
-              const buttonPermissions = [
-                "system:user:add",
-                "system:user:edit",
-                "system:user:delete",
-                "system:user:view",
-                "system:role:add",
-                "system:role:edit",
-              ]; // 按钮权限码
-
-              setUserInfo({
-                id: "1",
-                username,
-                roles: ["admin"],
-                permissions: buttonPermissions,
-                menus: userMenus,
+              // 调用登录API
+              const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
               });
 
-              setToken("mock-token");
-              // 在 cookie 中存储 token 和菜单权限
-              document.cookie = `token=mock-token; path=/`;
-              document.cookie = `menu_permissions=${encodeURIComponent(
-                JSON.stringify(userMenus)
-              )}; path=/`;
+              const result = await response.json();
 
-              message.success("登录成功");
-              router.push("/");
+              if (result.success) {
+                const { user, token } = result.data;
+                
+                // 更新用户状态
+                setUserInfo({
+                  id: user.id,
+                  username: user.username,
+                  roles: user.roles,
+                  permissions: user.permissions,
+                  menus: user.menus,
+                  email: user.email,
+                });
+
+                setToken(token);
+                
+                // 在 cookie 中存储 token 和菜单权限
+                document.cookie = `token=${token}; path=/`;
+                document.cookie = `menu_permissions=${encodeURIComponent(
+                  JSON.stringify(user.menus)
+                )}; path=/`;
+
+                message.success("登录成功");
+                router.push("/");
+              } else {
+                message.error(result.message || "登录失败");
+              }
             } catch (error) {
               console.error("登录失败:", error);
-              message.error(`登录失败${error}`);
+              message.error("登录请求失败，请检查网络连接");
             }
           }}
         >

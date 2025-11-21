@@ -13,8 +13,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "苏康养",
-  description: "您的生活管家平台",
+  title: "Turborepo",
+  description: "Turborepo 管理的项目集",
   icons: {
     icon: "/logo.png",
   },

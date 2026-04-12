@@ -1,9 +1,11 @@
 "use client";
-import { ProColumns } from "@ant-design/pro-components";
-import GenericTable from "@repo/admin-framework/generic-table/index";
+
+import GenericTable, {
+  GenericProColumnType,
+} from "@repo/admin-framework/generic-table/index";
 
 export default function Home() {
-  const columns: ProColumns[] = [
+  const columns: GenericProColumnType[] = [
     {
       title: "Name",
       dataIndex: "name",
@@ -26,19 +28,7 @@ export default function Home() {
 
   return (
     <>
-      <GenericTable
-        columns={columns}
-        url="/api/users"
-        onAdd={async (record) => {
-          console.log("add", record);
-        }}
-        onEdit={async (record) => {
-          console.log("edit", record);
-        }}
-        onDelete={async (id) => {
-          console.log("delete", id);
-        }}
-      />
+      <GenericTable columns={columns} />
     </>
   );
 }

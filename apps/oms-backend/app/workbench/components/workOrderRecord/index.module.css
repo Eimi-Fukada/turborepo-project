@@ -1,0 +1,52 @@
+.page {
+  width: 336px;
+  height: 100%;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(13, 110, 253, 0.12) 0%,
+      rgba(255, 255, 255, 0) 32%
+    ),
+    #ffffff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  border-bottom: 1px solid #e9ebef;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.text {
+  font-family:
+    Source Han Sans CN,
+    Source Han Sans CN;
+  font-weight: 500;
+  font-size: 16px;
+  color: #525459;
+}
+.content {
+  padding: 12px 10px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.infinite_list {
+  overflow: auto;
+  height: 100%;
+}
+.nomore {
+  font-size: 14px;
+  color: gray;
+  text-align: center;
+  margin-top: 10px;
+}

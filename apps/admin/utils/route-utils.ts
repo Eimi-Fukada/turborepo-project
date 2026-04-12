@@ -1,6 +1,5 @@
 import { whiteList } from "@/middleware";
 import { MenuDataItem } from "@ant-design/pro-components";
-
 export const filterRoutesByPermissions = (
   routes: MenuDataItem[],
   permissions: string[]

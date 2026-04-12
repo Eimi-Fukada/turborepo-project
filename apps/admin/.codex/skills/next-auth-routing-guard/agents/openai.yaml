@@ -1,0 +1,7 @@
+interface:
+  display_name: "Next Auth Routing Guard"
+  short_description: "Implement and audit middleware, redirects, and protected routing in Next.js."
+  default_prompt: "Use $next-auth-routing-guard to update Next.js middleware, route protection, and auth-aware redirect behavior."
+
+policy:
+  allow_implicit_invocation: true

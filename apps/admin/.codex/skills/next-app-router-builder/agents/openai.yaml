@@ -1,0 +1,7 @@
+interface:
+  display_name: "Next App Router Builder"
+  short_description: "Build production-ready Next.js App Router features with SSR, SEO, and mobile-first defaults."
+  default_prompt: "Use $next-app-router-builder to implement a production-ready Next.js App Router change with correct server/client boundaries, SEO metadata, and mobile-responsive behavior."
+
+policy:
+  allow_implicit_invocation: true

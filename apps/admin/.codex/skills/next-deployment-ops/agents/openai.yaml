@@ -1,0 +1,7 @@
+interface:
+  display_name: "Next Deployment Ops"
+  short_description: "Review environment, runtime, and production-readiness concerns for Next.js deployments."
+  default_prompt: "Use $next-deployment-ops to review a Next.js app for environment-variable drift, runtime assumptions, and deployment readiness."
+
+policy:
+  allow_implicit_invocation: true

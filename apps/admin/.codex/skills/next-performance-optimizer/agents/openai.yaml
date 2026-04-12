@@ -1,0 +1,7 @@
+interface:
+  display_name: "Next Performance Optimizer"
+  short_description: "Reduce client cost and improve SSR, hydration safety, and route delivery in Next.js."
+  default_prompt: "Use $next-performance-optimizer to review a Next.js route for client-boundary issues, hydration risks, and rendering performance."
+
+policy:
+  allow_implicit_invocation: true

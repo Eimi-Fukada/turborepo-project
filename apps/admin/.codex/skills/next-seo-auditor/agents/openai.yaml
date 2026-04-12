@@ -1,0 +1,7 @@
+interface:
+  display_name: "Next SEO Auditor"
+  short_description: "Audit and implement Next.js metadata, crawl rules, and SEO-safe rendering."
+  default_prompt: "Use $next-seo-auditor to review or implement Next.js route metadata, robots rules, and SEO-safe server-rendering behavior."
+
+policy:
+  allow_implicit_invocation: true

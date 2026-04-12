@@ -1,0 +1,7 @@
+interface:
+  display_name: "Next Observability Errors"
+  short_description: "Add stronger error surfaces, logging context, and operational visibility to Next.js."
+  default_prompt: "Use $next-observability-errors to improve Next.js loading, error handling, and logging visibility for a route or feature."
+
+policy:
+  allow_implicit_invocation: true

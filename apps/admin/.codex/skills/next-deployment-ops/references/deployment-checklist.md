@@ -1,19 +1,19 @@
-# Deployment Checklist
+# 部署检查清单
 
-## Build And Runtime
+## 构建与运行时
 
-- Confirm the intended Node and Next versions.
-- Check whether middleware, route handlers, or server actions require runtime-specific behavior.
-- Ensure local development assumptions do not leak into production config.
+- 确认目标 Node 和 Next 版本。
+- 检查中间件、路由处理器或服务端操作是否需要特定运行时的行为。
+- 确保本地开发假设不会泄漏到生产配置中。
 
-## Configuration
+## 配置
 
-- Keep `.env` variants aligned and documented.
-- Distinguish public and server-only environment variables carefully.
-- Fail early when required variables are missing.
+- 保持 `.env` 各变体的一致性和文档化。
+- 仔细区分公开变量和仅限服务端的环境变量。
+- 当必要变量缺失时尽早失败。
 
-## Operability
+## 可运维性
 
-- Provide health and error visibility.
-- Ensure production logs can identify route and environment context.
-- Review caching expectations for stale content or auth-sensitive data.
+- 提供健康检查和错误可见性。
+- 确保生产日志能够识别路由和环境上下文。
+- 审查缓存预期，特别是对于可能过时的内容或认证敏感的数据。

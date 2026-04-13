@@ -1,91 +1,91 @@
 ---
 name: next-app-router-builder
-description: Build, refactor, and review production-grade Next.js App Router applications. Use when Codex needs to create or modify Next.js 14/15 features, pages, layouts, route handlers, server actions, metadata, middleware, or UI flows with strong defaults for server-side rendering, SEO, performance, accessibility, and mobile-first responsiveness.
+description: 构建、重构和审查生产级 Next.js App Router 应用。当 Codex 需要创建或修改 Next.js 14/15 功能、页面、布局、路由处理器、服务端操作、元数据、中间件或 UI 流程时使用，默认遵循服务端渲染、SEO、性能、无障碍访问和移动优先响应式的设计原则。
 ---
 
-# Next App Router Builder
+# Next App Router 构建器
 
-Prefer App Router patterns and default to React Server Components.
+优先使用 App Router 模式，默认采用 React Server Components。
 
-## Work From The Current App First
+## 先检查当前应用
 
-Inspect the target project's existing routing, providers, middleware, styling system, and data flow before editing.
+在编辑之前，先检查目标项目现有的路由、Provider、中间件、样式系统和数据流。
 
-For this repository:
+对于本项目：
 
-- Preserve the App Router structure under `app/`.
-- Keep `middleware.ts` authorization behavior aligned with route changes.
-- Preserve Ant Design SSR wiring through `app/providers/root-provider.tsx`.
-- Treat `app/layout.tsx` metadata as the global SEO baseline.
+- 保留 `app/` 下的 App Router 结构。
+- 保持 `middleware.ts` 的授权行为与路由变更一致。
+- 保留通过 `app/providers/root-provider.tsx` 配置的 Ant Design SSR 接入。
+- 将 `app/layout.tsx` 的元数据视为全局 SEO 基线。
 
-## Default Architecture
+## 默认架构
 
-- Start on the server. Only add `"use client"` when browser APIs, event handlers, local interactive state, or client-only libraries are required.
-- Keep data fetching close to the server component or route handler that owns it.
-- Pass serialized data into client components instead of moving the whole page to the client.
-- Split interactive islands from server-rendered shells.
-- Prefer route segments, nested layouts, `loading.tsx`, `error.tsx`, and `not-found.tsx` over monolithic pages.
+- 从服务端开始。仅在需要浏览器 API、事件处理程序、本地交互状态或仅限客户端的库时才添加 `"use client"`。
+- 将数据获取保留在拥有它的服务端组件或路由处理器附近。
+- 将序列化后的数据传递给客户端组件，而不是将整个页面移到客户端。
+- 将交互孤岛与服务端渲染的外壳分离。
+- 优先使用路由段、嵌套布局、`loading.tsx`、`error.tsx` 和 `not-found.tsx`，而非单体页面。
 
-## Server Rendering Rules
+## 服务端渲染规则
 
-- Prefer server components for pages, layouts, data-backed sections, and SEO-relevant content.
-- Use client components for charts, rich tables, drag-and-drop, browser storage, or imperative UI libraries.
-- If a page starts as a client component, check whether only a leaf actually needs client execution.
-- Avoid fetching the same data in both server and client unless there is a clear revalidation strategy.
-- When auth or permissions affect the initial render, enforce them on the server, in middleware, or both.
-- Use streaming and suspense intentionally when the first meaningful content can render before secondary data resolves.
+- 页面、布局、数据驱动的区块和 SEO 相关内容优先使用服务端组件。
+- 图表、富表格、拖放、浏览器存储或命令式 UI 库使用客户端组件。
+- 如果页面以客户端组件开始，检查是否只有叶子组件真正需要客户端执行。
+- 避免在服务端和客户端重复获取相同数据，除非有明确的重新验证策略。
+- 当认证或权限影响初始渲染时，在服务端、中间件或两者中强制执行。
+- 当首要内容可以在次要数据解析之前渲染时，有意识地使用流式渲染和 Suspense。
 
-Read [rendering-and-data.md](./references/rendering-and-data.md) when you need a deeper rendering or caching decision.
+需要更深入的渲染或缓存决策时，阅读 [rendering-and-data.md](./references/rendering-and-data.md)。
 
-## SEO Rules
+## SEO 规则
 
-- Always decide whether the route is crawlable, partially crawlable, or intentionally private before adding metadata.
-- Use the Metadata API in layouts and pages for `title`, `description`, canonical URLs, Open Graph, robots, and alternates when relevant.
-- Ensure meaningful server-rendered headings and copy exist for indexable routes.
-- Avoid hiding critical SEO text behind client-only rendering.
-- Add structured data only when it matches the actual page content and business type.
-- For private admin screens, prefer `robots` settings that prevent indexing and make sure no sensitive content is exposed in HTML.
+- 在添加元数据之前，始终先确定路由是可爬取的、部分可爬取的，还是有意设为私有的。
+- 在布局和页面中使用 Metadata API 设置 `title`、`description`、canonical URL、Open Graph、robots 和 alternates（视情况而定）。
+- 确保可索引的路由存在有意义的服务端渲染标题和文案。
+- 避免将关键 SEO 文案隐藏在仅客户端渲染之后。
+- 仅在结构化数据与实际页面内容和业务类型匹配时才添加。
+- 对于私有管理页面，优先使用阻止索引的 `robots` 设置，并确保 HTML 中不暴露敏感内容。
 
-Read [seo-and-mobile-checklist.md](./references/seo-and-mobile-checklist.md) before shipping a public-facing route.
+发布面向公众的路由之前，阅读 [seo-and-mobile-checklist.md](./references/seo-and-mobile-checklist.md)。
 
-## Mobile And Responsive Rules
+## 移动端与响应式规则
 
-- Design mobile-first and verify the default layout at narrow widths before polishing desktop.
-- Avoid fixed heights that break when browser chrome changes on mobile.
-- Use responsive spacing, typography, and grid behavior instead of desktop-only assumptions.
-- Ensure tap targets, drawer behavior, sticky actions, and form inputs work on touch devices.
-- Treat large tables and dense admin panels as responsive problems to solve explicitly with stacking, horizontal scroll, or alternate compact layouts.
-- Test loading, empty, error, and validation states on small screens.
+- 采用移动优先设计，在完善桌面端之前先验证窄屏的默认布局。
+- 避免使用固定高度，因为移动端浏览器地址栏变化时容易导致布局异常。
+- 使用响应式间距、排版和网格行为，而非仅适用于桌面的假设。
+- 确保触摸目标、抽屉行为、固定操作和表单输入在触摸设备上正常工作。
+- 将大型表格和密集的管理面板视为需要明确解决的响应式问题，可通过堆叠、水平滚动或替代的紧凑布局来解决。
+- 在小屏幕上测试加载、空状态、错误状态和验证状态。
 
-## Performance And Robustness
+## 性能与健壮性
 
-- Keep the client bundle small by pushing data logic and heavy computation to the server where possible.
-- Use dynamic import only when it meaningfully reduces initial client cost.
-- Be careful with global providers; add them only when the state must span route boundaries.
-- Preserve font loading, image optimization, and cache semantics already used by the app.
-- Add `loading.tsx`, `error.tsx`, and skeletons when asynchronous work would otherwise create a blank screen.
+- 尽可能将数据逻辑和繁重计算推送到服务端，保持客户端包体积小巧。
+- 仅在动态导入能显著降低初始客户端成本时才使用。
+- 谨慎使用全局 Provider；仅在状态需要跨越路由边界时才添加。
+- 保留应用已使用的字体加载、图片优化和缓存语义。
+- 当异步工作会导致空白屏幕时，添加 `loading.tsx`、`error.tsx` 和骨架屏。
 
-## Implementation Workflow
+## 实现工作流
 
-1. Inspect the route, layout, provider, and middleware boundaries that the change touches.
-2. Decide what must render on the server and what must remain interactive on the client.
-3. Add or update metadata, canonical rules, and robots behavior for the route.
-4. Implement the UI with mobile-first layout behavior and accessible semantics.
-5. Re-check auth, redirects, suspense, loading, and empty states.
-6. Validate build-impacting concerns such as type safety, lint issues, and obvious hydration mismatches.
+1. 检查变更涉及的路由、布局、Provider 和中间件边界。
+2. 确定哪些内容必须在服务端渲染，哪些必须在客户端保持交互性。
+3. 为路由添加或更新元数据、canonical 规则和 robots 行为。
+4. 实现具有移动优先布局行为和无障碍语义的 UI。
+5. 重新检查认证、重定向、Suspense、加载状态和空状态。
+6. 验证对构建有影响的问题，如类型安全、lint 问题和明显的 hydration 不匹配。
 
-## Output Expectations
+## 输出要求
 
-When making substantive Next.js changes, explain:
+进行实质性的 Next.js 变更时，需要说明：
 
-- Why the chosen boundary is server or client.
-- How SSR, SEO, and mobile behavior were handled.
-- Any tradeoff, especially for auth-gated or highly interactive pages.
+- 为什么选择的服务端/客户端边界是合理的。
+- SSR、SEO 和移动端行为是如何处理的。
+- 任何权衡，特别是对于需要认证的或高度交互的页面。
 
-## Avoid
+## 避免事项
 
-- Adding `"use client"` at the page level by default.
-- Putting secrets, permission-only data, or private admin details into client-rendered HTML unnecessarily.
-- Relying on client-side effects for content that should exist in the initial response.
-- Treating SEO as only `<title>` and `description`.
-- Shipping desktop-first layouts without checking narrow-width behavior.
+- 默认在页面级别添加 `"use client"`。
+- 不必要地将密钥、仅限权限的数据或私有管理细节放入客户端渲染的 HTML 中。
+- 依赖客户端效果来呈现应该在初始响应中存在的内容。
+- 将 SEO 仅仅视为 `<title>` 和 `description`。
+- 在未检查窄屏行为的情况下发布桌面优先的布局。

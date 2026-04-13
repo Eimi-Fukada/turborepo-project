@@ -1,29 +1,29 @@
-# SEO And Mobile Checklist
+# SEO 与移动端检查清单
 
-Use this checklist before shipping a Next.js route.
+在发布 Next.js 路由之前，请使用此检查清单。
 
 ## SEO
 
-- Decide whether the route is public, semi-public, or private.
-- Set metadata with a route-appropriate title and description.
-- Add canonical handling when duplicate URLs are possible.
-- Set `robots` intentionally, especially for login, dashboard, and account areas.
-- Ensure the primary heading and key copy exist in server-rendered HTML for public pages.
-- Ensure social preview metadata matches the route purpose when the page is shareable.
-- Avoid indexing pages that expose internal navigation labels, account details, or admin data.
+- 确定路由是公开、半公开还是私有的。
+- 设置与路由匹配的 title 和 description 元数据。
+- 当可能存在重复 URL 时，添加 canonical 处理。
+- 有意识地设置 `robots`，特别是对于登录、仪表盘和账户区域。
+- 确保公开页面的主标题和关键文案存在于服务端渲染的 HTML 中。
+- 当页面可分享时，确保社交预览元数据与路由用途匹配。
+- 避免索引暴露内部导航标签、账户详情或管理数据的页面。
 
-## Mobile
+## 移动端
 
-- Start at narrow width and scale up.
-- Verify no critical action is hidden below an awkward fold created by sticky headers or browser chrome.
-- Ensure buttons and links have comfortable touch targets.
-- Check forms, validation messages, and modal or drawer flows on small screens.
-- Give dense tables an explicit small-screen strategy.
-- Verify loading, error, and empty states remain readable and usable on mobile.
+- 从窄屏宽度开始，逐步放大。
+- 验证没有关键操作被固定头部或浏览器地址栏造成的不当折叠所隐藏。
+- 确保按钮和链接具有舒适的触摸目标。
+- 在小屏幕上检查表单、验证消息以及模态框或抽屉流程。
+- 为密集的表格提供明确的小屏策略。
+- 验证加载、错误和空状态在移动端保持可读和可用。
 
-## Accessibility
+## 无障碍访问
 
-- Use semantic headings and landmark structure.
-- Preserve visible focus styles.
-- Ensure color contrast survives all responsive states.
-- Keep interactive controls reachable without hover.
+- 使用语义化标题和地标结构。
+- 保留可见的焦点样式。
+- 确保颜色对比度在所有响应式状态下都满足要求。
+- 确保交互控件无需悬停即可访问。

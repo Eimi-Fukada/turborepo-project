@@ -1,25 +1,25 @@
 ---
 name: next-observability-errors
-description: Improve error handling, logging, and operational visibility in Next.js App Router projects. Use when Codex needs to add error boundaries, instrument async failures, improve loading and error surfaces, standardize logging context, or make route, mutation, and background failures easier to diagnose in development and production.
+description: 改善 Next.js App Router 项目中的错误处理、日志记录和运维可观测性。当 Codex 需要添加错误边界、检测异步失败、改善加载和错误展示面、标准化日志上下文，或使路由、变更操作和后台失败在开发和生产环境中更易于诊断时使用。
 ---
 
-# Next Observability Errors
+# Next 可观测性与错误处理
 
-Make failures visible, actionable, and scoped.
+让失败变得可见、可操作且范围明确。
 
-## Core Workflow
+## 核心工作流
 
-1. Identify user-visible failure points and internal failure points.
-2. Add route-appropriate loading, error, and empty states.
-3. Ensure server and client logs carry enough route or feature context.
-4. Capture failures near the async boundary where they occur.
-5. Avoid leaking sensitive data in logs or error UI.
+1. 识别用户可见的失败点和内部失败点。
+2. 添加与路由匹配的加载、错误和空状态。
+3. 确保服务端和客户端日志携带足够的路由或功能上下文。
+4. 在异步边界附近捕获失败。
+5. 避免在日志或错误 UI 中泄露敏感数据。
 
-## Defaults
+## 默认行为
 
-- Prefer route-level `error.tsx` and explicit fallbacks over generic crashes.
-- Include enough context in logs to identify route, feature, or request intent.
-- Keep user-facing error copy safe and concise while preserving internal diagnostics elsewhere.
-- Treat auth, network, and mutation failures as first-class states.
+- 优先使用路由级别的 `error.tsx` 和明确的回退方案，而非通用崩溃。
+- 在日志中包含足够的上下文以识别路由、功能或请求意图。
+- 保持面向用户的错误文案安全且简洁，同时在其他位置保留内部诊断信息。
+- 将认证、网络和变更操作失败视为一等状态。
 
-Read [error-surface-patterns.md](./references/error-surface-patterns.md) before refactoring failure handling.
+重构失败处理之前，阅读 [error-surface-patterns.md](./references/error-surface-patterns.md)。

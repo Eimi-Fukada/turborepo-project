@@ -1,51 +1,51 @@
-# Next Project Rules
+# Next 项目规则
 
-Apply these rules to all Next.js work in this project unless the task explicitly requires an exception.
+除非任务明确要求例外情况，否则以下规则适用于本项目所有 Next.js 开发工作。
 
-## Architecture
+## 架构
 
-- Default to App Router and React Server Components.
-- Add `"use client"` only when browser APIs, event handlers, or client-only libraries are required.
-- Keep interactive logic in leaf components instead of promoting whole pages to client components.
-- Fetch initial page data on the server unless the source is truly browser-only.
+- 默认使用 App Router 和 React Server Components。
+- 仅在需要浏览器 API、事件处理程序或仅限客户端的库时才添加 `"use client"`。
+- 将交互逻辑保留在叶子组件中，而不是将整个页面提升为客户端组件。
+- 除非数据源确实仅在浏览器端可用，否则在服务端获取初始页面数据。
 
-## SSR And Hydration
+## SSR 与 Hydration
 
-- Treat server render as the source of truth for first paint.
-- Do not depend on `window`, `document`, `localStorage`, random values, or current time during server rendering.
-- Split browser-only UI into client islands.
-- Add `loading.tsx`, `error.tsx`, and `not-found.tsx` when route behavior would otherwise be ambiguous.
+- 将服务端渲染视为首次绘制的可信来源。
+- 在服务端渲染期间，不要依赖 `window`、`document`、`localStorage`、随机值或当前时间。
+- 将仅限浏览器的 UI 拆分为客户端孤岛。
+- 当路由行为可能出现歧义时，添加 `loading.tsx`、`error.tsx` 和 `not-found.tsx`。
 
 ## SEO
 
-- Every public route must define route-appropriate metadata.
-- Private admin, login, and account routes must opt out of indexing with `robots`.
-- Do not hide SEO-critical headings or copy behind client-only effects.
-- Prefer canonical URLs whenever duplicate access paths are possible.
+- 每个公开路由必须定义与路由匹配的元数据。
+- 私有的管理、登录和账户路由必须使用 `robots` 选择退出索引。
+- 不要将 SEO 关键的标题或文案隐藏在仅客户端的效果之后。
+- 当存在重复访问路径时，优先使用 canonical URL。
 
-## Auth And Routing
+## 认证与路由
 
-- Enforce coarse auth and redirect behavior in `middleware.ts`.
-- Re-check authorization in server-side data access and mutations.
-- Keep route additions aligned with whitelist, permission, and redirect logic.
-- Never expose sensitive admin content in prerendered HTML for unauthenticated users.
+- 在 `middleware.ts` 中执行粗粒度的认证和重定向行为。
+- 在服务端数据访问和变更操作中重新检查授权。
+- 保持路由新增与白名单、权限和重定向逻辑的一致性。
+- 永远不要在预渲染的 HTML 中向未认证用户暴露敏感的管理内容。
 
-## Mobile And Accessibility
+## 移动端与无障碍访问
 
-- Build mobile-first and verify narrow screens before desktop polish.
-- Give tables, filters, modals, and sticky actions an explicit small-screen strategy.
-- Preserve semantic headings, keyboard access, visible focus, and usable touch targets.
-- Validate empty, loading, error, and form states on mobile widths.
+- 采用移动优先策略，在完善桌面端之前先验证窄屏显示。
+- 为表格、筛选器、模态框和固定操作提供明确的小屏策略。
+- 保留语义化标题、键盘访问、可见焦点和可用的触摸目标。
+- 在移动端宽度下验证空状态、加载状态、错误状态和表单状态。
 
-## Performance
+## 性能
 
-- Minimize client bundle cost by keeping data and computation on the server where possible.
-- Dynamically import heavy client-only dependencies when they do not need to block first paint.
-- Avoid unnecessary global providers.
-- Reuse framework-native caching and image/font optimization before inventing custom layers.
+- 尽可能将数据和计算保留在服务端，以减少客户端包体积。
+- 当重型客户端依赖不需要阻塞首次绘制时，使用动态导入。
+- 避免不必要的全局 Provider。
+- 在发明自定义缓存层之前，优先复用框架原生的缓存和图片/字体优化。
 
-## Delivery
+## 交付
 
-- Document unusual rendering, cache, auth, or deployment decisions near the code.
-- Prefer deterministic environment-variable usage and fail early on missing required config.
-- Add observability for important async failures, route failures, and degraded user flows.
+- 在代码附近记录非标准的渲染、缓存、认证或部署决策。
+- 优先使用确定性的环境变量用法，在缺少必要配置时尽早失败。
+- 为重要的异步失败、路由失败和降级的用户流程添加可观测性。

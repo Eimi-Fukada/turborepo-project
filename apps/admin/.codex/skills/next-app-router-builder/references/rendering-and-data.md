@@ -1,41 +1,41 @@
-# Rendering And Data
+# 渲染与数据
 
-Use this reference when deciding how a Next.js feature should render and where its data should live.
+在决定 Next.js 功能应如何渲染以及其数据应放在哪里时，请参考本文档。
 
-## Pick The Boundary
+## 选择边界
 
-- Use a server component when the route needs first-load data, SEO-visible content, secure data access, or a smaller client bundle.
-- Use a client component when the code needs event handlers, browser APIs, animation state, uncontrolled third-party widgets, or local optimistic interaction.
-- Start with a server page plus small client islands. Escalate to a client page only if most of the screen is truly browser-driven.
+- 当路由需要首屏加载数据、SEO 可见内容、安全数据访问或较小的客户端包时，使用服务端组件。
+- 当代码需要事件处理程序、浏览器 API、动画状态、不受控制的第三方组件或本地乐观交互时，使用客户端组件。
+- 从服务端页面加上小型客户端孤岛开始。仅当屏幕的大部分确实是浏览器驱动时，才升级为客户端页面。
 
-## Data Fetching
+## 数据获取
 
-- Fetch on the server for initial page content, permission-gated data, and content that should appear without hydration.
-- Fetch on the client for user-triggered refreshes, highly transient local state, or browser-only sources.
-- Avoid duplicate fetch paths unless you intentionally hydrate server data into a client cache.
+- 首屏页面内容、需要权限的数据和应在 hydration 前显示的内容，在服务端获取。
+- 用户触发的刷新、高度瞬时的本地状态或仅限浏览器的数据源，在客户端获取。
+- 避免重复的获取路径，除非有意将服务端数据注入客户端缓存。
 
-## App Router Patterns
+## App Router 模式
 
-- Put shared chrome and section-level data in layouts when it benefits multiple child routes.
-- Use route-level `loading.tsx` when server work may delay the first meaningful render.
-- Use `notFound()` for missing entities instead of ad hoc empty pages.
-- Use route handlers for HTTP APIs that belong to the app surface.
-- Use server actions only when the mutation model is simple and the team is comfortable with them.
+- 当共享的页面框架和区块级数据能惠及多个子路由时，将其放在布局中。
+- 当服务端工作可能延迟首次有意义渲染时，使用路由级别的 `loading.tsx`。
+- 使用 `notFound()` 处理缺失的实体，而非临时性的空白页面。
+- 使用路由处理器处理属于应用层面的 HTTP API。
+- 仅在变更模型简单且团队对其感到舒适时，才使用服务端操作。
 
-## Auth And Permissions
+## 认证与权限
 
-- Enforce coarse routing rules in `middleware.ts`.
-- Enforce data-level authorization again on the server where the data is fetched or mutated.
-- Redirect unauthenticated users before rendering private content when possible.
+- 在 `middleware.ts` 中执行粗粒度的路由规则。
+- 在数据被获取或变更的服务端再次执行数据级别的授权。
+- 尽可能在渲染私有内容之前重定向未认证用户。
 
-## Hydration Safety
+## Hydration 安全
 
-- Do not render different markup on server and client unless you intentionally suppress or isolate the mismatch.
-- Gate browser-only logic behind client components.
-- Keep time-, window-, and storage-dependent rendering out of server components.
+- 不要在服务端和客户端渲染不同的标记，除非有意抑制或隔离这种不匹配。
+- 将仅限浏览器的逻辑限制在客户端组件中。
+- 将依赖时间、window 和 storage 的渲染排除在服务端组件之外。
 
-## Caching And Revalidation
+## 缓存与重新验证
 
-- Choose explicit cache semantics when data freshness matters.
-- Prefer predictable behavior over clever caching.
-- Document unusual cache or revalidation decisions in the code when they are easy to misunderstand.
+- 当数据新鲜度很重要时，选择明确的缓存语义。
+- 优先使用可预测的行为，而非巧妙的缓存策略。
+- 在代码中记录不寻常的缓存或重新验证决策，以防止误解。

@@ -1,29 +1,29 @@
 ---
 name: next-deployment-ops
-description: Prepare, review, and harden Next.js projects for deployment and runtime operations. Use when Codex needs to validate environment variables, build assumptions, output mode, cache strategy, runtime constraints, health checks, monitoring hooks, CI delivery concerns, or production-readiness for a Next.js application.
+description: 为部署和运行时操作准备、审查和加固 Next.js 项目。当 Codex 需要验证环境变量、构建假设、输出模式、缓存策略、运行时约束、健康检查、监控钩子、CI 交付问题或 Next.js 应用的生产就绪状态时使用。
 ---
 
-# Next Deployment Ops
+# Next 部署运维
 
-Treat deployment as part of application design.
+将部署视为应用设计的一部分。
 
-## Core Workflow
+## 核心工作流
 
-1. Inventory environment variables and fail-fast requirements.
-2. Check build and runtime assumptions for the current target platform.
-3. Review cache, image, font, and static asset expectations.
-4. Confirm health, logging, and monitoring surfaces exist for production issues.
-5. Document operational tradeoffs and safe defaults.
+1. 盘点环境变量和快速失败要求。
+2. 检查当前目标平台的构建和运行时假设。
+3. 审查缓存、图片、字体和静态资源的预期行为。
+4. 确认生产问题相关的健康检查、日志记录和监控覆盖面已就位。
+5. 记录运维权衡和安全默认值。
 
-## Defaults
+## 默认行为
 
-- Required environment variables should be explicit and validated.
-- Runtime-sensitive decisions should be documented close to config.
-- CI should verify type safety and buildability before deployment.
-- Production behavior should not depend on development-only defaults.
+- 必要的环境变量应明确声明并经过验证。
+- 对运行时敏感的决策应在配置附近记录。
+- CI 应在部署之前验证类型安全和可构建性。
+- 生产行为不应依赖于仅限开发的默认值。
 
-## Use The Bundled Script
+## 使用附带脚本
 
-Run `scripts/env_deploy_audit.py` to compare `.env*` files, detect variable drift, and list environment names referenced in code.
+运行 `scripts/env_deploy_audit.py` 来比较 `.env*` 文件，检测变量漂移，并列出代码中引用的环境变量名称。
 
-Read [deployment-checklist.md](./references/deployment-checklist.md) before proposing production rollout changes.
+提出生产发布变更之前，阅读 [deployment-checklist.md](./references/deployment-checklist.md)。

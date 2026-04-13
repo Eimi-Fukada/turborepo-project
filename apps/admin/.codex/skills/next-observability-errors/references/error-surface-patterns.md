@@ -1,13 +1,13 @@
-# Error Surface Patterns
+# 错误展示模式
 
-## Route-Level Handling
+## 路由级别处理
 
-- Use `loading.tsx` when the route may legitimately wait.
-- Use `error.tsx` when the route can fail independently.
-- Use empty states for valid but missing data, not for failures.
+- 当路由可能需要合理等待时，使用 `loading.tsx`。
+- 当路由可能独立失败时，使用 `error.tsx`。
+- 使用空状态处理有效但缺失的数据，而非用于处理失败。
 
-## Logging
+## 日志记录
 
-- Log enough context to understand which route or feature failed.
-- Keep secrets, raw tokens, and personal data out of logs.
-- Distinguish expected user errors from operational failures.
+- 记录足够的上下文以理解哪个路由或功能发生了失败。
+- 将密钥、原始 Token 和个人数据排除在日志之外。
+- 区分预期的用户错误与运维失败。

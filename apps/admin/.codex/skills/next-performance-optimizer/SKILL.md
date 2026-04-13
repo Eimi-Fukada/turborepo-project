@@ -1,30 +1,30 @@
 ---
 name: next-performance-optimizer
-description: Optimize Next.js App Router applications for rendering performance, bundle size, hydration safety, and responsive delivery. Use when Codex needs to reduce client JavaScript, review server/client boundaries, add streaming or suspense, audit hydration risks, or identify heavy dependencies and slow route patterns.
+description: 优化 Next.js App Router 应用的渲染性能、包体积、hydration 安全性和响应式交付。当 Codex 需要减少客户端 JavaScript、审查服务端/客户端边界、添加流式渲染或 Suspense、审计 hydration 风险，或识别重型依赖和慢路由模式时使用。
 ---
 
-# Next Performance Optimizer
+# Next 性能优化器
 
-Favor architecture fixes over micro-optimizations.
+优先通过架构修复而非微观优化。
 
-## Core Workflow
+## 核心工作流
 
-1. Inspect whether the route starts on the server and only opts into the client when needed.
-2. Look for oversized client boundaries, duplicate fetches, and heavy browser-only dependencies.
-3. Isolate interactive islands and defer non-critical client code.
-4. Review loading, suspense, and cache behavior.
-5. Audit hydration risks and narrow-screen behavior before treating the work as complete.
+1. 检查路由是否从服务端开始，仅在需要时才启用客户端。
+2. 查找过大的客户端边界、重复的数据获取和重型仅限浏览器的依赖。
+3. 隔离交互孤岛，延迟非关键的客户端代码。
+4. 审查加载、Suspense 和缓存行为。
+5. 在将工作视为完成之前，审计 hydration 风险和窄屏行为。
 
-## Use The Bundled Scripts
+## 使用附带脚本
 
-- Run `scripts/client_boundary_audit.py` to list files that use `"use client"`.
-- Run `scripts/hydration_risk_audit.py` to flag browser-only APIs, random values, and time-based rendering patterns.
+- 运行 `scripts/client_boundary_audit.py` 列出使用 `"use client"` 的文件。
+- 运行 `scripts/hydration_risk_audit.py` 标记仅限浏览器的 API、随机值和基于时间的渲染模式。
 
-## Defaults
+## 默认行为
 
-- Push data work to server components or route handlers first.
-- Prefer route-level streaming over a blank initial shell.
-- Dynamic import only when it materially improves startup cost.
-- Treat large UI libraries, charts, editors, and 3D code as client-island candidates.
+- 首先将数据工作推送到服务端组件或路由处理器。
+- 优先使用路由级别的流式渲染，而非空白初始外壳。
+- 仅在动态导入能显著改善启动成本时才使用。
+- 将大型 UI 库、图表、编辑器和 3D 代码视为客户端孤岛的候选者。
 
-Read [performance-review-guide.md](./references/performance-review-guide.md) when a change spans multiple routes.
+当变更涉及多个路由时，阅读 [performance-review-guide.md](./references/performance-review-guide.md)。

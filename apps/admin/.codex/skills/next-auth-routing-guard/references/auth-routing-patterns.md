@@ -1,15 +1,15 @@
-# Auth Routing Patterns
+# 认证路由模式
 
-## Good Defaults
+## 良好默认值
 
-- Keep auth utility routes explicit, such as login and forbidden pages.
-- Avoid mixing permission checks into unrelated presentation components.
-- Redirect early when user identity is missing.
-- Treat permission cookies or tokens as untrusted input until validated.
+- 保持认证工具路由明确，如登录和禁止访问页面。
+- 避免将权限检查混入无关的展示组件中。
+- 当用户身份缺失时尽早重定向。
+- 在验证之前，将权限 Cookie 或 Token 视为不可信输入。
 
-## Review Questions
+## 审查问题
 
-- Does the new route belong in the public allowlist?
-- Does middleware protect the route family?
-- Does the server validate permissions again for data access?
-- Does the route return a coherent 403, redirect, or empty state?
+- 新路由是否属于公开白名单？
+- 中间件是否保护了该路由族？
+- 服务端是否在数据访问时再次验证了权限？
+- 路由是否返回了一致的 403、重定向或空状态？

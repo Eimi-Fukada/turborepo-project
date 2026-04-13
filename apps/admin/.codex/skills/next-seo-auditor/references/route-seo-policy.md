@@ -1,19 +1,19 @@
-# Route SEO Policy
+# 路由 SEO 策略
 
-## Public Routes
+## 公开路由
 
-- Should be indexable unless there is a clear business reason not to.
-- Should have specific metadata and meaningful server-rendered headings.
-- Should avoid client-only rendering for critical explanatory copy.
+- 除非有明确的业务原因，否则应可被索引。
+- 应具有特定的元数据和服务端渲染的有意义标题。
+- 应避免对关键说明文案使用仅客户端渲染。
 
-## Semi-Public Routes
+## 半公开路由
 
-- Examples include gated previews, partner pages, or search surfaces.
-- Decide robots behavior explicitly instead of inheriting defaults.
-- Check whether canonical rules or duplicate paths need special handling.
+- 示例包括受限预览页、合作伙伴页面或搜索展示面。
+- 明确决定 robots 行为，而非继承默认值。
+- 检查 canonical 规则或重复路径是否需要特殊处理。
 
-## Private Routes
+## 私有路由
 
-- Examples include admin dashboards, login, profile, settings, and internal tools.
-- Should usually set restrictive robots behavior.
-- Should not expose sensitive content in initial HTML.
+- 示例包括管理后台、登录、个人资料、设置和内部工具。
+- 通常应设置限制性的 robots 行为。
+- 不应在初始 HTML 中暴露敏感内容。

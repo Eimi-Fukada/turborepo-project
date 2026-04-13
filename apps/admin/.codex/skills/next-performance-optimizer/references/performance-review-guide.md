@@ -1,18 +1,18 @@
-# Performance Review Guide
+# 性能审查指南
 
-## High-Value Checks
+## 高价值检查项
 
-- Is the page unnecessarily marked with `"use client"`?
-- Is the same data fetched on both server and client?
-- Could a heavy widget become a lazy client island?
-- Does the route show useful content before secondary data resolves?
-- Are mobile layouts causing excessive hidden or duplicated DOM?
+- 页面是否不必要地标记了 `"use client"`？
+- 同一数据是否在服务端和客户端都被获取了？
+- 重型组件是否可以成为延迟加载的客户端孤岛？
+- 在次要数据解析之前，路由是否显示了有用的内容？
+- 移动端布局是否导致了过多的隐藏或重复 DOM？
 
-## Common Expensive Dependencies
+## 常见的高成本依赖
 
-- Rich editors
-- Charting libraries
-- 3D libraries
-- Map libraries
-- Large table abstractions
-- Client-side state layers that wrap the full app
+- 富文本编辑器
+- 图表库
+- 3D 库
+- 地图库
+- 大型表格抽象
+- 包裹整个应用的客户端状态管理层

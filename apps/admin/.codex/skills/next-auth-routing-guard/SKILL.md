@@ -1,29 +1,29 @@
 ---
 name: next-auth-routing-guard
-description: Design and review authentication, authorization, redirects, and protected routing in Next.js App Router projects. Use when Codex needs to update middleware, route guards, login redirects, permission checks, protected layouts, cookie-based auth flows, or private-route SEO behavior.
+description: 设计和审查 Next.js App Router 项目中的认证、授权、重定向和受保护路由。当 Codex 需要更新中间件、路由守卫、登录重定向、权限检查、受保护布局、基于 Cookie 的认证流程或私有路由的 SEO 行为时使用。
 ---
 
-# Next Auth Routing Guard
+# Next 认证路由守卫
 
-Treat route access as a server concern first.
+将路由访问首先视为服务端关注点。
 
-## Core Workflow
+## 核心工作流
 
-1. Identify public, authenticated, and permission-scoped routes.
-2. Keep coarse access checks in `middleware.ts`.
-3. Re-check authorization where protected data is fetched or mutated.
-4. Ensure redirects, forbidden states, and noindex behavior are coherent.
-5. Verify route additions do not bypass existing permission models.
+1. 识别公开路由、需认证路由和有权限范围的路由。
+2. 在 `middleware.ts` 中保留粗粒度的访问检查。
+3. 在获取或变更受保护数据的位置重新检查授权。
+4. 确保重定向、禁止访问状态和 noindex 行为是一致的。
+5. 验证路由新增不会绕过现有的权限模型。
 
-## Defaults
+## 默认行为
 
-- Middleware handles routing-level gating.
-- Server-side data access handles record-level authorization.
-- Login, 403, and other auth utility routes remain explicit and easy to audit.
-- Private routes should not be accidentally indexable.
+- 中间件处理路由级别的门控。
+- 服务端数据访问处理记录级别的授权。
+- 登录、403 和其他认证工具路由保持明确且易于审计。
+- 私有路由不应被意外索引。
 
-## Use The Bundled Script
+## 使用附带脚本
 
-Run `scripts/route_guard_audit.py` to inventory route files and compare them with middleware allowlist patterns.
+运行 `scripts/route_guard_audit.py` 来盘点路由文件，并与中间件白名单模式进行比对。
 
-Read [auth-routing-patterns.md](./references/auth-routing-patterns.md) before changing route guards.
+修改路由守卫之前，阅读 [auth-routing-patterns.md](./references/auth-routing-patterns.md)。
